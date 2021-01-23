@@ -30,6 +30,13 @@ const seedDB = async () => {
             title: `${sample(descriptors)} ${sample(places)}`,
             description: "asfanksgnkaf afnskdjngsdk ngsd snfk sdfnksd",
             price,
+            geometry: {
+                type: "Point",
+                coordinates: [
+                    cities[random1000].longitude,
+                    cities[random1000].latitude
+                ]
+            },
             images: [
                 {
                     url: 'https://res.cloudinary.com/p2vcloud/image/upload/v1611179132/P2V/evhsutmor2nu42vbznqw.jpg',

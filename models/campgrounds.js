@@ -11,6 +11,9 @@ const ImageSchema = new Schema({
 ImageSchema.virtual('thumbnail').get(function () {
     this.url.replace('/upload/', '/upload/w_200/');
 })
+
+const opts = { toJSON: { virtuals: true } };
+
 const campgroundSchema = new Schema({
     title: String,
     images: [ImageSchema],
@@ -37,7 +40,12 @@ const campgroundSchema = new Schema({
             type: Schema.Types.ObjectId, ref: 'Review'
         }
     ]
-});
+}, opts);
+
+campgroundSchema.virtual('properties.popUpMarkup').get(function () {
+    // this.url.replace('/upload/', '/upload/w_200/');
+    return { id: this.id, location: this.location, title: this.title };
+})
 
 campgroundSchema.post('findOneAndDelete', async function (doc) {
     if (doc) {

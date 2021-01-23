@@ -1,7 +1,8 @@
 
 mapboxgl.accessToken = mapToken;
+// console.log(coordinates);
 const cords = coordinates.split(",");
-console.log("coordinates", typeof coordinates);
+
 var map = new mapboxgl.Map({
     container: 'map',
     style: 'mapbox://styles/mapbox/streets-v11', // stylesheet location
@@ -16,7 +17,7 @@ var marker = new mapboxgl.Marker({
     .setPopup(
         new mapboxgl.Popup({ offset: 25 })
             .setHTML(
-                // `<h3>${campground.title}</h3><p>${campground.location}</p>`
+                `<h3>${title}</h3><p>${loc}</p>`
             )
     )
     .addTo(map);

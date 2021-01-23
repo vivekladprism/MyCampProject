@@ -3,7 +3,8 @@
     <h1 class="text-center"> New Campground</h1>
     <div class="col-6 offset-3">
 
-        <form action="/campgrounds/<%=campground._id%>?_method=PUT" method='POST' novalidate class="validated-form">
+        <form action="/campgrounds/<%=campground._id%>?_method=PUT" method='POST' novalidate class="validated-form"
+            enctype="multipart/form-data">
             <div class="mb-3">
                 <label class="form-label" for="title"> Title </label>
                 <input class="form-control" value="<%=campground.title%>" type="text" id="title"
@@ -26,11 +27,9 @@
                     <div class="valid-feedback"> Looks Good!</div>
                 </div>
             </div>
-            <div class="mb-3">
-                <label class="form-label" for="image"> Image URL </label>
-                <input class="form-control" type="text" value="<%= campground.image %>" id="image"
-                    name="campground[image]" required>
-                <div class="valid-feedback"> Looks Good!</div>
+            <div class="input-group custom-file mb-3">
+                <input type="file" class="form-control custom-file-input" id="image" name="image" multiple>
+                <label class="input-group-text custom-file-label" for="image">Add More Images</label>
             </div>
 
             <div class="mb-3">
@@ -38,6 +37,14 @@
                 <input class="form-control" type="text" value="<%= campground.description %>" id="description"
                     name="campground[description]" required>
                 <div class="valid-feedback"> Looks Good!</div>
+            </div>
+            <div class="mb-3">
+                <% campground.images.forEach(function (img,i) { %>
+                <img class="img-thumbnail" src="<%= img.thumbnail %>" alt="">
+                <div class="form-check-inline">
+                    <input type="checkbox" name="deleteImages[]" value="<%= img.filename %>" id="image-<%= i  %>">
+                </div>
+                <label for="image-<%= i  %>">Delete?</label>
             </div>
             <div class="mb-3">
                 <button class="btn btn-info">Update Campground</button>

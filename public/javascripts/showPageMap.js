@@ -18,6 +18,7 @@ map.addControl(
     })
 );
 
+console.log(mapboxgl.showUser)
 var marker = new mapboxgl.Marker({
     color: "#0000FF",
     draggable: true

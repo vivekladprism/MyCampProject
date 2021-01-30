@@ -1,0 +1,16 @@
+.mapboxPopupStyle .mapboxgl-popup-content {
+    background-color:rgb(239, 252, 250);;
+  }
+  .mapboxPopupStyle .mapboxgl-popup-tip {
+    border-top-color:rgb(239, 252, 250);;
+  }
+  .mapboxPopupStyle .mapboxgl-popup-close-button{
+      display: none;
+  }
+ 
+  .mapboxPopupStyle .mapboxgl-popup-content {
+    font: 400 15px/22px 'Source Sans Pro', 'Helvetica Neue', Sans-serif;
+    width: 180px;
+    text-align: center;
+    padding-bottom: 0;
+  }

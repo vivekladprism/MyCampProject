@@ -1,6 +1,7 @@
 // const campgrounds = require("../../models/campgrounds");
 
 // const { function } = require("joi");
+// var MapboxDirections = require('@mapbox/mapbox-gl-directions');
 
 console.log("MAPTOKEN ", mapToken)
 console.log("campgrounds", campground.features[0]);
@@ -33,6 +34,12 @@ const generateMap = (coords, zoomNum) => {
                 // Add a new source from our GeoJSON data and
                 // set the 'cluster' option to true. GL-JS will
                 // add the point_count property to your source data.
+                map.addControl(
+                        new MapboxDirections({
+                                accessToken: mapToken
+                        }),
+                        'top-left'
+                );
                 map.addSource('campgrounds', {
                         type: 'geojson',
                         // Point to GeoJSON data. This example visualizes all M1.0+ earthquakes

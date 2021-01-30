@@ -1,3 +1,4 @@
+// const MapboxDirections = require('@mapbox/mapbox-gl-directions');
 
 mapboxgl.accessToken = mapToken;
 const cords = coordinates.split(",");
@@ -6,7 +7,7 @@ var map = new mapboxgl.Map({
     container: 'map',
     style: 'mapbox://styles/mapbox/streets-v11', // stylesheet location
     center: cords, // starting position [lng, lat]
-    zoom: 9 // starting zoom
+    zoom: 13 // starting zoom
 });
 
 map.addControl(
@@ -16,7 +17,16 @@ map.addControl(
         },
         trackUserLocation: true
     })
+
 );
+map.addControl(
+    new MapboxDirections({
+        accessToken: mapToken,
+
+    }),
+    'top-left'
+);
+
 
 console.log(mapboxgl.showUser)
 var marker = new mapboxgl.Marker({
@@ -24,9 +34,9 @@ var marker = new mapboxgl.Marker({
     draggable: true
 }).setLngLat(cords)
     .setPopup(
-        new mapboxgl.Popup({ offset: 25 })
+        new mapboxgl.Popup({ offset: 25, className: "mapboxPopupStyle" })
             .setHTML(
-                `<h3>${title}</h3><p>${loc}</p>`
+                `<h4"><strong>${title}</strong></h4><p>${loc}</p>`
             )
     )
     .addTo(map);

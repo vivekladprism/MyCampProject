@@ -29,7 +29,7 @@ const MongoDBStore = require('connect-mongo')(session);
 // mongodb://localhost:27017/myCamp
 // DB_URL = "mongodb+srv://viveklad:27vivek1995@cluster0.mtfhu.mongodb.net/<dbname>?w=majority&retryWrites=true"
 const secret = process.env.SECRET;
-console.log(dbUrl);
+// console.log(dbUrl);
 mongoose.connect(dbUrl, {
     useNewUrlParser: true,
     useCreateIndex: true,
@@ -88,7 +88,7 @@ app.use((req, res, next) => {
     res.locals.currentUser = req.user;
     res.locals.success = req.flash("success");
     res.locals.error = req.flash("error");
-    console.log("currentUser is ", res.locals.currentUser);
+    // console.log("currentUser is ", res.locals.currentUser);
     next();
 })
 
@@ -116,7 +116,7 @@ app.use((err, req, res, next) => {
     const { statusCode = 500 } = err;
     if (!err.message) err.message = 'Oh No, Something went Wrong!'
     res.status(statusCode);
-    console.log(err);
+    // console.log(err);
     res.render('error', { err });
 });
 

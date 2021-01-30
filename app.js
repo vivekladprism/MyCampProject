@@ -27,6 +27,7 @@ const { MongoStore } = require('connect-mongo');
 const dbUrl = process.env.DB_URL || 'mongodb://localhost:27017/myCamp';
 const MongoDBStore = require('connect-mongo')(session);
 // mongodb://localhost:27017/myCamp
+// DB_URL = "mongodb+srv://viveklad:27vivek1995@cluster0.mtfhu.mongodb.net/<dbname>?w=majority&retryWrites=true"
 const secret = process.env.SECRET;
 console.log(dbUrl);
 mongoose.connect(dbUrl, {

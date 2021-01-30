@@ -1,6 +1,5 @@
 
 mapboxgl.accessToken = mapToken;
-// console.log(coordinates);
 const cords = coordinates.split(",");
 
 var map = new mapboxgl.Map({
@@ -9,6 +8,15 @@ var map = new mapboxgl.Map({
     center: cords, // starting position [lng, lat]
     zoom: 9 // starting zoom
 });
+
+map.addControl(
+    new mapboxgl.GeolocateControl({
+        positionOptions: {
+            enableHighAccuracy: true
+        },
+        trackUserLocation: true
+    })
+);
 
 var marker = new mapboxgl.Marker({
     color: "#0000FF",

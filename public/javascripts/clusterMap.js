@@ -12,7 +12,7 @@ if ("geolocation" in navigator) {
         navigator.geolocation.getCurrentPosition((position) => {
 
                 startCords = [position.coords.longitude, position.coords.latitude];
-                generateMap(startCords, 7);
+                generateMap(startCords, 8);
 
         }, function (e) {
                 generateMap(startCords, 3);

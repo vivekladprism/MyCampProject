@@ -2,17 +2,17 @@
 <div class="row">
     <h1 class="text-center">New Attraction</h1>
     <div class="col-md-6 offset-md-3">
-        <form action="/campgrounds" method="POST" novalidate class="validated-form" enctype="multipart/form-data">
+        <form action="/attractions" method="POST" novalidate class="validated-form" enctype="multipart/form-data">
             <div class="mb-3">
                 <label class="form-label" for="title">Title</label>
-                <input class="form-control" type="text" id="title" name="campground[title]" required>
+                <input class="form-control" type="text" id="title" name="attraction[title]" required>
                 <div class="valid-feedback">
                     Looks good!
                 </div>
             </div>
             <div class="mb-3">
                 <label class="form-label" for="location">Location</label>
-                <input class="form-control" type="text" id="location" name="campground[location]" required>
+                <input class="form-control" type="text" id="location" name="attraction[location]" required>
                 <div class="valid-feedback">
                     Looks good!
                 </div>
@@ -20,7 +20,7 @@
 
             <div class="mb-3">
                 <label class="form-label" for="description">Description</label>
-                <textarea class="form-control" type="text" id="description" name="campground[description]"
+                <textarea class="form-control" type="text" id="description" name="attraction[description]"
                     required></textarea>
                 <div class="valid-feedback">
                     Looks good!
@@ -36,9 +36,9 @@
                 </div>
             </div>
             <div class="mb-3">
-                <button class="btn btn-success">Add Campground</button>
+                <button class="btn btn-success">Add Attraction</button>
             </div>
         </form>
-        <a href="/campgrounds">All Campgrounds</a>
+        <a href="/attractions">All Attractions</a>
     </div>
 </div>

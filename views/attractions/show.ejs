@@ -9,14 +9,14 @@
 
         <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
             <div class="carousel-inner">
-                <% campground.images.forEach((img, i) => { %>
+                <% attraction.images.forEach((img, i) => { %>
                 <div class="carousel-item <%= i == 0 ? 'active' : '' %>">
                     <img src="<%= img.url %>" class="d-block w-100" alt="">
                 </div>
                 <%})  %>
 
             </div>
-            <% if(campground.images.length > 1) { %>
+            <% if(attraction.images.length > 1) { %>
             <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-bs-slide="prev">
                 <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                 <span class="visually-hidden">Previous</span>
@@ -30,23 +30,23 @@
         <div class="card mb-3">
 
             <div class="card-body">
-                <h5 class="card-title"><%= campground.title %> </h5>
-                <p class="card-text"><%= campground.description %> </p>
+                <h5 class="card-title"><%= attraction.title %> </h5>
+                <p class="card-text"><%= attraction.description %> </p>
             </div>
             <ul class="list-group list-group-flush">
-                <li class="list-group-item text-muted"><%= campground.location %> </li>
-                <li class="list-group-item ">created by: <%= campground.author.username %> </li>
+                <li class="list-group-item text-muted"><%= attraction.location %> </li>
+                <li class="list-group-item ">created by: <%= attraction.author.username %> </li>
             </ul>
 
-            <% if(currentUser && campground.author.equals(currentUser._id)) {%>
+            <% if(currentUser && attraction.author.equals(currentUser._id)) {%>
             <div class="card-body">
-                <a class="card-link btn btn-info " href="/campgrounds/<%=campground._id%>/edit">Edit</a>
-                <form class="d-inline" action="/campgrounds/<%=campground._id%>?_method=DELETE" method="POST">
+                <a class="card-link btn btn-info " href="/attractions/<%=attraction._id%>/edit">Edit</a>
+                <form class="d-inline" action="/attractions/<%=attraction._id%>?_method=DELETE" method="POST">
                     <button class="btn btn-danger">Delete</button>
                 </form>
             </div>
             <% } %>
-            <a class="mb-3" href="/campgrounds"> All Campgrounds</a>
+            <a class="mb-3" href="/attractions"> All Attractions</a>
 
 
 
@@ -60,7 +60,7 @@
         <% if(currentUser) { %>
 
         <h3> Leave a Review</h3>
-        <form action="/campgrounds/<%= campground._id %>/reviews" method="POST" class="mb-3 validated-form" novalidate>
+        <form action="/attractions/<%= attraction._id %>/reviews" method="POST" class="mb-3 validated-form" novalidate>
             <!-- <div class="mb-3">
                 <label for="rating" class="form-label">Rating</label>
                 <input type="range" class="form-range" name="review[rating]" id="rating" max="5" , min="1">
@@ -87,7 +87,7 @@
             <button type="submit" class="btn btn-success">Submit</button>
         </form>
         <% } %>
-        <% for(let review of campground.reviews){ %>
+        <% for(let review of attraction.reviews){ %>
         <div class="card mb-3">
             <div class="card-body">
 
@@ -98,7 +98,7 @@
 
                 <p class="card-txt"><%= review.body %></p>
                 <% if(currentUser && review.author.equals(currentUser._id)) {%>
-                <form action="/campgrounds/<%= campground._id %>/reviews/<%= review._id %>?_method=DELETE"
+                <form action="/attractions/<%= attraction._id %>/reviews/<%= review._id %>?_method=DELETE"
                     method="POST">
                     <button class="btn btn-danger">Delete</button>
                 </form>
@@ -111,9 +111,9 @@
 </div>
 <script>
     const mapToken = '<%- process.env.MAPBOX_TOKEN %>';
-    const coordinates = '<%- campground.geometry.coordinates%>';
-    const title = '<%- campground.title %>';
-    const loc = '<%- campground.location %>';
+    const coordinates = '<%- attraction.geometry.coordinates%>';
+    const title = '<%- attraction.title %>';
+    const loc = '<%- attraction.location %>';
 </script>
 <script src="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-directions/v4.1.0/mapbox-gl-directions.js"></script>
 <script src="/javascripts/showPageMap.js"></script>

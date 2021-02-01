@@ -14,7 +14,7 @@ ImageSchema.virtual('thumbnail').get(function () {
 
 const opts = { toJSON: { virtuals: true } };
 
-const campgroundSchema = new Schema({
+const attractionsSchema = new Schema({
     title: String,
     images: [ImageSchema],
     geometry: {
@@ -41,16 +41,16 @@ const campgroundSchema = new Schema({
     ]
 }, opts);
 
-campgroundSchema.virtual('properties.popUpMarkup').get(function () {
+attractionsSchema.virtual('properties.popUpMarkup').get(function () {
     // this.url.replace('/upload/', '/upload/w_200/');
     return { id: this.id, location: this.location, title: this.title };
 })
 
-campgroundSchema.post('findOneAndDelete', async function (doc) {
+attractionsSchema.post('findOneAndDelete', async function (doc) {
     if (doc) {
         await Review.deleteMany({
             _id: { $in: doc.reviews }
         })
     }
 })
-module.exports = mongoose.model('Campground', campgroundSchema)
+module.exports = mongoose.model('Attraction', attractionsSchema)

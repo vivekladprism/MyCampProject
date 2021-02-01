@@ -5,26 +5,26 @@
 <div id="map" style="width: 100%; height: 500px"></div>
 <h1>All Attractions</h1>
 <div class="mb-3">
-    <a class="btn btn-primary" style="background-color: yellowgreen;" href="/campgrounds/new"> Add New Attraction</a>
+    <a class="btn btn-primary" style="background-color: yellowgreen;" href="/attractions/new"> Add New Attraction</a>
 </div>
 
-<% for (let campground of campgrounds ) {%>
+<% for (let attraction of attractions ) {%>
 <div class="card" mb-3 style="background-color: rgb(239, 252, 250);">
     <div class="row">
         <div class="col-md-3">
-            <% if(campground.images.length !== 0) { %>
-            <img class="img-fluid" alt="" src="<%= campground.images[0].url %> ">
+            <% if(attraction.images.length !== 0) { %>
+            <img class="img-fluid" alt="" src="<%= attraction.images[0].url %> ">
             <% } %>
         </div>
         <div class="col-md-8">
             <div class="card-body">
-                <h5 class="card-title"><%= campground.title  %></h5>
-                <p class="card-text"> <%= campground.description  %> </p>
+                <h5 class="card-title"><%= attraction.title  %></h5>
+                <p class="card-text"> <%= attraction.description  %> </p>
                 <p class="card-text">
-                    <small class="text-muted"> <%= campground.location  %> </small>
+                    <small class="text-muted"> <%= attraction.location  %> </small>
                 </p>
                 <a class="btn btn-primary" style="background-color: rgb(250, 150, 0);"
-                    href="/campgrounds/<%= campground._id %> "> View <%= campground.title  %>
+                    href="/attractions/<%= attraction._id %> "> View <%= attraction.title  %>
                 </a>
             </div>
         </div>
@@ -33,7 +33,7 @@
 <%}%>
 <script>
     const mapToken = '<%- process.env.MAPBOX_TOKEN %>';
-    const campground = { features: JSON.parse('<%- JSON.stringify(campgrounds) %>') };
+    const attraction = { features: JSON.parse('<%- JSON.stringify(attractions) %>') };
 </script>
 <script src="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-directions/v4.1.0/mapbox-gl-directions.js"></script>
 <script src="/javascripts/clusterMap.js"> </script>

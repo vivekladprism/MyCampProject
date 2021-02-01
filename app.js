@@ -13,11 +13,11 @@ const joi = require('joi');
 const flash = require('connect-flash')
 const catchAsync = require("./utils/catchAsync");
 const methodOverride = require('method-override');
-const CampGround = require('./models/campgrounds');
+const CampGround = require('./models/attractions');
 const User = require('./models/user');
 const ExpressError = require('./utils/ExpressError');
 const { join } = require('path');
-const campgroundRoutes = require('./routes/campground')
+const attractionRoutes = require('./routes/attractions')
 const reviewRoutes = require('./routes/reviews');
 const userRoutes = require('./routes/users');
 const passport = require('passport');
@@ -92,8 +92,8 @@ app.use((req, res, next) => {
     next();
 })
 
-app.use("/campgrounds", campgroundRoutes);
-app.use("/campgrounds/:id/reviews", reviewRoutes);
+app.use("/attractions", attractionRoutes);
+app.use("/attractions/:id/reviews", reviewRoutes);
 app.use("/", userRoutes);
 
 app.get("/", (req, res) => {

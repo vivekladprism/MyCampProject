@@ -1,10 +1,10 @@
-// const campgrounds = require("../../models/campgrounds");
+// const attractions = require("../../models/attractions");
 
 // const { function } = require("joi");
 // var MapboxDirections = require('@mapbox/mapbox-gl-directions');
 
 console.log("MAPTOKEN ", mapToken)
-console.log("campgrounds", campground.features[0]);
+console.log("attractions", attraction.features[0]);
 let startCords = [-95, 36];
 
 // console.log("features", features[0]);
@@ -40,11 +40,11 @@ const generateMap = (coords, zoomNum) => {
                         }),
                         'top-left'
                 );
-                map.addSource('campgrounds', {
+                map.addSource('attractions', {
                         type: 'geojson',
                         // Point to GeoJSON data. This example visualizes all M1.0+ earthquakes
                         // from 12/22/15 to 1/21/16 as logged by USGS' Earthquake hazards program.
-                        data: campground,
+                        data: attraction,
                         cluster: true,
                         clusterMaxZoom: 14, // Max zoom to cluster points on
                         clusterRadius: 50 // Radius of each cluster when clustering points (defaults to 50)
@@ -53,7 +53,7 @@ const generateMap = (coords, zoomNum) => {
                 map.addLayer({
                         id: 'clusters',
                         type: 'circle',
-                        source: 'campgrounds',
+                        source: 'attractions',
                         filter: ['has', 'point_count'],
                         paint: {
                                 // Use step expressions (https://docs.mapbox.com/mapbox-gl-js/style-spec/#expressions-step)
@@ -85,7 +85,7 @@ const generateMap = (coords, zoomNum) => {
                 map.addLayer({
                         id: 'cluster-count',
                         type: 'symbol',
-                        source: 'campgrounds',
+                        source: 'attractions',
                         filter: ['has', 'point_count'],
                         layout: {
                                 'text-field': '{point_count_abbreviated}',
@@ -97,7 +97,7 @@ const generateMap = (coords, zoomNum) => {
                 map.addLayer({
                         id: 'unclustered-point',
                         type: 'circle',
-                        source: 'campgrounds',
+                        source: 'attractions',
                         filter: ['!', ['has', 'point_count']],
                         paint: {
                                 'circle-color': '#11b4da',
@@ -113,7 +113,7 @@ const generateMap = (coords, zoomNum) => {
                                 layers: ['clusters']
                         });
                         var clusterId = features[0].properties.cluster_id;
-                        map.getSource('campgrounds').getClusterExpansionZoom(
+                        map.getSource('attractions').getClusterExpansionZoom(
                                 clusterId,
                                 function (err, zoom) {
                                         if (err) return;
@@ -146,7 +146,7 @@ const generateMap = (coords, zoomNum) => {
                         new mapboxgl.Popup()
                                 .setLngLat(coordinates)
                                 .setHTML(
-                                        `<a href= "/campgrounds/${markup.id}">${markup.title}</a><br><h5>${markup.location}</h5>`
+                                        `<a href= "/attractions/${markup.id}">${markup.title}</a><br><h5>${markup.location}</h5>`
                                 )
                                 .addTo(map);
                 });

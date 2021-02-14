@@ -1,5 +1,5 @@
 const Review = require("./models/review");
-const CampGround = require("./models/attractions");
+const Attraction = require("./models/attractions");
 const { attractionSchema, reviewSchema } = require("./schema");
 const ExpressError = require("./utils/ExpressError");
 
@@ -27,7 +27,7 @@ module.exports.validateAttraction = (req, res, next) => {
 
 module.exports.isAuthor = async (req, res, next) => {
     const { id } = req.params;
-    const attraction = await CampGround.findById(req.params.id);
+    const attraction = await Attraction.findById(id);
     if (!attraction.author.equals(req.user._id)) {
         req.flash('error', 'You do not have permission to do that!');
         return res.redirect(`/attractions/${id}`);

@@ -14,6 +14,7 @@ module.exports.renderNewForm = (req, res) => {
 
 module.exports.createAttraction = async (req, res) => {
     // if (!req.body.attraction) throw new ExpressError("Invalid Attraction Data", 400);
+
     const attraction = new Attraction(req.body.attraction);
     const geoData = await geocoder.forwardGeocode({
         query: req.body.attraction.location,
@@ -22,6 +23,7 @@ module.exports.createAttraction = async (req, res) => {
     console.log(geoData.body.features[0].geometry)
     attraction.geometry = geoData.body.features[0].geometry;
     attraction.images = req.files.map(f => ({ url: f.path, filename: f.filename }));
+    console.log(req.files);
     attraction.author = req.user._id;
     await attraction.save();
     req.flash('success', "Successfully created a new attraction!");

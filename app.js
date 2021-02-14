@@ -13,7 +13,7 @@ const joi = require('joi');
 const flash = require('connect-flash')
 const catchAsync = require("./utils/catchAsync");
 const methodOverride = require('method-override');
-const CampGround = require('./models/attractions');
+const Attraction = require('./models/attractions');
 const User = require('./models/user');
 const ExpressError = require('./utils/ExpressError');
 const { join } = require('path');
@@ -100,13 +100,6 @@ app.get("/", (req, res) => {
     res.render('home')
 });
 
-app.get("/makeCampGround", catchAsync(async (req, res) => {
-    const camp = new CampGround({ title: 'My yard' });
-    await camp.save();
-    res.send(camp);
-}))
-
-
 
 
 app.use('*', (req, res, next) => {
@@ -116,7 +109,7 @@ app.use((err, req, res, next) => {
     const { statusCode = 500 } = err;
     if (!err.message) err.message = 'Oh No, Something went Wrong!'
     res.status(statusCode);
-    // console.log(err);
+    console.log(err);
     res.render('error', { err });
 });
 
